@@ -16,10 +16,13 @@ func main() {
 	
 	calibrations := strings.Split(string(content), "\n")
 	sum := 0
+	sum2 := 0
 
 	for _, s := range calibrations {
 		sum += decode.Decode(s)
+		sum2 += decode.DecodeWithLetters(s)
 	}
 
-	println(sum)
+	println("Part 1:", sum)
+	println("Part 2:", sum2)
 }
