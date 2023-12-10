@@ -4,6 +4,7 @@ import (
 	"advent-of-code-2023/2/game"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -23,12 +24,22 @@ func main() {
 	}
 
 	sum := 0
+	sum2 := 0
 
 	for i, s := range games {
-		if game.PossibleGame(game.MaxCubes(s), allowed) {
+		maxCubes := game.MaxCubes(s)
+
+		if game.PossibleGame(maxCubes, allowed) {
 			sum += i + 1
 		}
+
+		redAmount, _ := strconv.Atoi(maxCubes["red"])
+		greenAmount, _ := strconv.Atoi(maxCubes["green"])
+		blueAmount, _ := strconv.Atoi(maxCubes["blue"])
+		product := redAmount * greenAmount * blueAmount
+		sum2 += product
 	}
 
 	println("Part 1:", sum)
+	println("Part 2:", sum2)
 }
